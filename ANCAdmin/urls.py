@@ -16,7 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from django.conf.urls import include, url
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('adminPanel.urls')),
+    url(r'^post/', include(('adminPost.urls', 'adminPost'), namespace='adminPost')),
+    url(r'^account/', include(('adminAccount.urls', 'adminAccount'), namespace='adminAccount')),
+    url(r'^api/v1/details/doctor/', include(('restDoctor.urls', 'restDoctor'), namespace='restDoctor')),
+    url(r'api/v1/account/', include(('restaccount.urls','restaccount'),namespace='restaccount')),
+
 ]
